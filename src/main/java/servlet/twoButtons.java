@@ -8,9 +8,12 @@
 import java.io.*;
 import java.util.*;
 
-//Import Servlet Libraries
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 // twoButtons class
 // CONSTRUCTOR: no constructor specified (default)
@@ -26,7 +29,10 @@ import javax.servlet.http.*;
 //              Fields are filled from the parameters.
 // private void PrintTail (PrintWriter out) --> Prints the HTML bottom
 //***********************************************************************
-
+@WebServlet(
+        name = "TwoButtons",
+        urlPatterns = {"/TwoButtons"}
+    )
 public class twoButtons extends HttpServlet
 {
 
@@ -36,8 +42,8 @@ static String Path    = "/offutt/servlet/";
 static String Servlet = "twoButtons";
 
 // Button labels
-static String OperationAdd = "Add";
-static String OperationSub = "Subtract";
+static String concatab = "stringAstringB";
+static String concatba = "stringBstringA";
 
 // Other strings.
 static String Style ="https://www.cs.gmu.edu/~offutt/classes/432/432-style.css";
@@ -51,24 +57,24 @@ static String Style ="https://www.cs.gmu.edu/~offutt/classes/432/432-style.css";
 public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
-   Float rslt   = new Float(0.0);
-   Float lhsVal = new Float(0.0);
-   Float rhsVal = new Float(0.0);
+   String rslt   = "";
+   String lhsVal = "";
+   String rhsVal = "";
    String operation = request.getParameter("Operation");
    String lhsStr = request.getParameter("LHS");
    String rhsStr = request.getParameter("RHS");
    if ((lhsStr != null) && (lhsStr.length() > 0))
-      lhsVal = new Float(lhsStr);
+      lhsVal = new String(lhsStr);
    if ((rhsStr != null) && (rhsStr.length() > 0))
-      rhsVal = new Float(rhsStr);
+      rhsVal = new String(rhsStr);
 
-   if (operation.equals(OperationAdd))
+   if (operation.equals(concatab))
    {
-      rslt = new Float(lhsVal.floatValue() + rhsVal.floatValue());
+      rslt = lhsVal + rhsVal
    }
-   else if (operation.equals(OperationSub))
+   else if (operation.equals(concatba))
    {
-      rslt = new Float(lhsVal.floatValue() - rhsVal.floatValue());
+      rslt = rhsVal + lhsVal
    }
 
    response.setContentType("text/html");
@@ -119,15 +125,15 @@ private void PrintBody (PrintWriter out, String lhs, String rhs, String rslt)
    out.println("multiple submit buttons.");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
-   out.println(" action=\"https://" + Domain + Path + Servlet + "\">");
+   out.println(" action=\"/TwoButtons\">");
    out.println("");
    out.println(" <table>");
    out.println("  <tr>");
-   out.println("   <td>First value:");
+   out.println("   <td>String A:");
    out.println("   <td><input type=\"text\" name=\"LHS\" value=\"" + lhs + "\" size=5>");
    out.println("  </tr>");
    out.println("  <tr>");
-   out.println("   <td>Second value:");
+   out.println("   <td>String B:");
    out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rhs + "\" size=5>");
    out.println("  </tr>");
    out.println("  <tr>");
@@ -137,8 +143,8 @@ private void PrintBody (PrintWriter out, String lhs, String rhs, String rslt)
    out.println(" </table>");
    out.println(" <br>");
    out.println(" <br>");
-   out.println(" <input type=\"submit\" value=\"" + OperationAdd + "\" name=\"Operation\">");
-   out.println(" <input type=\"submit\" value=\"" + OperationSub + "\" name=\"Operation\">");
+   out.println(" <input type=\"submit\" value=\"" + concatab + "\" name=\"Operation\">");
+   out.println(" <input type=\"submit\" value=\"" + concatba + "\" name=\"Operation\">");
    out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
    out.println("</form>");
    out.println("");
