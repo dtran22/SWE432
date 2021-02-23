@@ -70,11 +70,11 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
 
    if (operation.equals(concatab))
    {
-      rslt = lhsVal + rhsVal
+      rslt = lhsVal + rhsVal;
    }
    else if (operation.equals(concatba))
    {
-      rslt = rhsVal + lhsVal
+      rslt = rhsVal + lhsVal;
    }
 
    response.setContentType("text/html");
