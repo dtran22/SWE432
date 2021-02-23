@@ -19,7 +19,7 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    out.println("<title>Servlet example</title>");
    out.println("</head>");
    out.println("<body>");
-   out.println("<p>My first servlet.</p>");
+   out.println("<p>My name is Du and my hobbies are watching YouTube and playing Valorant.</p>");
    out.println("</body>");
    out.println("</html>");
    out.close();
