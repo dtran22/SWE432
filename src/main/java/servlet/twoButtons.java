@@ -36,11 +36,6 @@ import javax.servlet.http.HttpServletResponse;
 public class twoButtons extends HttpServlet
 {
 
-// Location of servlet.
-static String Domain  = "cs.gmu.edu:8443";
-static String Path    = "/offutt/servlet/";
-static String Servlet = "twoButtons";
-
 // Button labels
 static String concatab = "stringAstringB";
 static String concatba = "stringBstringA";
@@ -57,9 +52,9 @@ static String Style ="https://www.cs.gmu.edu/~offutt/classes/432/432-style.css";
 public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
-   String rslt   = "";
-   String lhsVal = "";
-   String rhsVal = "";
+   String rslt   = new String();
+   String lhsVal = new String();
+   String rhsVal = new String();
    String operation = request.getParameter("Operation");
    String lhsStr = request.getParameter("LHS");
    String rhsStr = request.getParameter("RHS");
@@ -80,7 +75,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    response.setContentType("text/html");
    PrintWriter out = response.getWriter();
    PrintHead(out);
-   PrintBody(out, lhsStr, rhsStr, rslt.toString());
+   PrintBody(out, lhsStr, rhsStr, rslt);
    PrintTail(out);
 }  // End doPost
 
@@ -107,7 +102,7 @@ private void PrintHead (PrintWriter out)
    out.println("");
 
    out.println("<head>");
-   out.println("<title>Two buttons example</title>");
+   out.println("<title>Two buttons String Concat</title>");
    out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"" + Style + "\">");
    out.println("</head>");
    out.println("");
