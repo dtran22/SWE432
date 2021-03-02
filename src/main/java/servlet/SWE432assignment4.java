@@ -33,7 +33,7 @@ public class SWE432assignment4 extends HttpServlet
       }
       //if(request.getParameter("Try") != null) {
       String[] namesArr = input.split(" ");
-      if ("ON".equals(random)) {
+      if (random == null) {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
