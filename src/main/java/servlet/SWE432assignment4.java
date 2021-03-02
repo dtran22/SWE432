@@ -17,41 +17,38 @@ public class SWE432assignment4 extends HttpServlet
 {
   static String Style = "mystyle.css";
 
+  String result = "";
+
   public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-      String input = "";
-      String result = "hi";
       String names = request.getParameter("names");
-      if ((names != null) && (names.length() > 0)) {
-        input = new String(names);
-      }
+
       if (request.getParameter("randomSelect") != null) {
-        String[] namesArr = input.split(" ");
+        String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        //result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-        result += Arrays.toString(namesArr);
+        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("replacementRandom") != null) {
-        String[] namesArr = input.split(" ");
+        String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        result += request.getParameter("replacementRandom");//result + "Randomly selected with replacement: " + (namesArr[i]) + "\n";
+        result = result + "Randomly selected with replacement: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("woReplacementRandom") != null) {
-        String[] namesArr = input.split(" ");
+        String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         result = result + "Randomly selected without replacement: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("sorted") != null) {
-        String[] namesArr = input.split(" ");
+        String[] namesArr = names.split(" ");
         Arrays.sort(namesArr);
         result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
       }
       if(request.getParameter("reversed") != null) {
-        String[] namesArr = input.split(" ");
+        String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
         result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
       }
