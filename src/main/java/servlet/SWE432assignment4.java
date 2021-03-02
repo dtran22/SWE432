@@ -79,7 +79,7 @@ public class SWE432assignment4 extends HttpServlet
         input = new String(names);
       }
       //if(request.getParameter("Try") != null) {
-      String[] namesArr = names.split(" ");
+      String[] namesArr = input.split(" ");
       if (request.getParameter("random select") != null) {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
