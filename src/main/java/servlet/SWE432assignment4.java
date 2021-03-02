@@ -22,7 +22,7 @@ public class SWE432assignment4 extends HttpServlet
     {
       String input = "";
       String result = "";
-      String names = "hi my name is";//request.getParameter("names");
+      String names = request.getParameter("names");
       String random = request.getParameter("randomSelect");
       String rRandom = request.getParameter("replacementRandom");
       String woRandom = request.getParameter("woReplacementRandom");
@@ -30,31 +30,32 @@ public class SWE432assignment4 extends HttpServlet
       String reversed = request.getParameter("reversed");
       if ((names != null) && (names.length() > 0)) {
         input = new String(names);
+        String[] namesArr = input.split(" ");
+        if (random != null) {
+          Random r = new Random();
+          int i = r.nextInt(namesArr.length);
+          random = namesArr[i];
+          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        }
+        if(rRandom != null) {
+          Random r = new Random();
+          int i = r.nextInt(namesArr.length);
+          rRandom = namesArr[i];
+          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        }
+        if(sorted != null) {
+          Arrays.sort(namesArr);
+          sorted = Arrays.toString(namesArr);
+          result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
+        }
+        if(reversed != null) {
+          Arrays.sort(namesArr, Collections.reverseOrder());
+          reversed = Arrays.toString(namesArr);
+          result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
+        }
       }
       //if(request.getParameter("Try") != null) {
-      String[] namesArr = input.split(" ");
-      if (random == null) {
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
-        random = namesArr[i];
-        result = result + "Randomly Selected: " + Arrays.toString(namesArr) + "\n";
-      }
-      if("ON".equals(rRandom)) {
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
-        rRandom = namesArr[i];
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-      }
-      if("ON".equals(sorted)) {
-        Arrays.sort(namesArr);
-        sorted = Arrays.toString(namesArr);
-        result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
-      }
-      if("ON".equals(reversed)) {
-        Arrays.sort(namesArr, Collections.reverseOrder());
-        reversed = Arrays.toString(namesArr);
-        result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
-      }
+
       //}
 
       response.setContentType("text/html");
@@ -67,47 +68,10 @@ public class SWE432assignment4 extends HttpServlet
   public void doGet (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-      String input = "";
-      String result = "";
-      String names = "hi my name is";//request.getParameter("names");
-      String random = request.getParameter("randomSelect");
-      String rRandom = request.getParameter("replacementRandom");
-      String woRandom = request.getParameter("woReplacementRandom");
-      String sorted = request.getParameter("sorted");
-      String reversed = request.getParameter("reversed");
-      if ((names != null) && (names.length() > 0)) {
-        input = new String(names);
-      }
-      //if(request.getParameter("Try") != null) {
-      String[] namesArr = input.split(" ");
-      if (random == null) {
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
-        random = namesArr[i];
-        result = result + "Randomly Selected: " + Arrays.toString(namesArr) + "\n";
-      }
-      if("ON".equals(rRandom)) {
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
-        rRandom = namesArr[i];
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-      }
-      if("ON".equals(sorted)) {
-        Arrays.sort(namesArr);
-        sorted = Arrays.toString(namesArr);
-        result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
-      }
-      if("ON".equals(reversed)) {
-        Arrays.sort(namesArr, Collections.reverseOrder());
-        reversed = Arrays.toString(namesArr);
-        result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
-      }
-      //}
-
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out, names, random, rRandom, woRandom, sorted, reversed, result);
+      PrintBody(out);
       PrintTail(out);
     }
 
