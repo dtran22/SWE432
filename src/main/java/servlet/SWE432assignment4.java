@@ -31,7 +31,7 @@ public class SWE432assignment4 extends HttpServlet
       if ((names != null) && (names.length() > 0))
         input = new String(names);
 
-      if(request.getParameter("Try") != null) {
+      //if(request.getParameter("Try") != null) {
         String[] namesArr = input.split("\\s+");
         if (request.getParameter("random select") != null) {
           Random r = new Random();
@@ -55,7 +55,7 @@ public class SWE432assignment4 extends HttpServlet
           reversed = Arrays.toString(namesArr);
           result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
         }
-      }
+      //}
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
@@ -78,7 +78,7 @@ public class SWE432assignment4 extends HttpServlet
       if ((names != null) && (names.length() > 0))
         input = new String(names);
 
-      if(request.getParameter("Try") != null) {
+      //if(request.getParameter("Try") != null) {
         String[] namesArr = input.split("\\s+");
         if (request.getParameter("random select") != null) {
           Random r = new Random();
@@ -102,7 +102,7 @@ public class SWE432assignment4 extends HttpServlet
           reversed = Arrays.toString(namesArr);
           result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
         }
-      }
+      //}
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
