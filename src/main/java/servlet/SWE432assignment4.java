@@ -36,7 +36,13 @@ public class SWE432assignment4 extends HttpServlet
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        result = result + "Randomly selected with replacement: " + (namesArr[i]) + "\n";
+      }
+      if(request.getParameter("woreplacementRandom") != null) {
+        String[] namesArr = input.split(" ");
+        Random r = new Random();
+        int i = r.nextInt(namesArr.length);
+        result = result + "Randomly selected without replacement: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("sorted") != null) {
         String[] namesArr = input.split(" ");
@@ -97,13 +103,13 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <input type=\"text\" id=\"name\" name=\"names\" value=\"" + names + "\"><br><br>");
     out.println(" <div class=\"inner\">");
     out.println(" <label for=\"random\">");
-    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"random\">");
+    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"randomSelect\">");
     out.println(" Random select</label><br>");
     out.println(" <label for=\"wreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"rRandom\">");
+    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"replacementRandom\">");
     out.println(" Random select with replacement</label><br>");
     out.println(" <label for=\"woreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"woRandom\">");
+    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"woReplacementRandom\">");
     out.println(" Random select without replacement</label><br>");
     out.println(" <label for=\"sorted\">");
     out.println(" <input type=\"checkbox\" id=\"sorted\" name=\"sorted\" value=\"sorted\">");
