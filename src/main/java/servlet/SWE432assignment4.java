@@ -69,7 +69,7 @@ public class SWE432assignment4 extends HttpServlet
     {
       String input = "";
       String result = "";
-      String names = request.getParameter("names");
+      String names = "hi my name is";//request.getParameter("names");
       String random = request.getParameter("randomSelect");
       String rRandom = request.getParameter("replacementRandom");
       String woRandom = request.getParameter("woReplacementRandom");
@@ -84,7 +84,7 @@ public class SWE432assignment4 extends HttpServlet
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        result = result + "Randomly Selected: " + Arrays.toString(namesArr) + "\n";
       }
       if("ON".equals(rRandom)) {
         Random r = new Random();
