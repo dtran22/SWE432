@@ -28,11 +28,10 @@ public class SWE432assignment4 extends HttpServlet
       String woRandom = "random select without replacement";
       String sorted = "sorted order";
       String reversed = "reversed order";
-      String operation = request.getParameter("Try");
       if ((names != null) && (names.length() > 0))
         input = new String(names);
 
-      if(operation.equals("Try")) {
+      if(request.getParameter("Try") != null) {
         String[] namesArr = input.split("\\s+");
         if (request.getParameter("random select") != null) {
           Random r = new Random();
@@ -76,11 +75,10 @@ public class SWE432assignment4 extends HttpServlet
       String woRandom = "random select without replacement";
       String sorted = "sorted order";
       String reversed = "reversed order";
-      String operation = request.getParameter("Try");
       if ((names != null) && (names.length() > 0))
         input = new String(names);
 
-      if(operation.equals("Try")) {
+      if(request.getParameter("Try") != null) {
         String[] namesArr = input.split("\\s+");
         if (request.getParameter("random select") != null) {
           Random r = new Random();
