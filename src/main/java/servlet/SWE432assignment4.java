@@ -20,8 +20,8 @@ public class SWE432assignment4 extends HttpServlet
   public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-      String result = "";
       String input = "";
+      String result = request.getParameter("display");
       String names = request.getParameter("names");
       String random = request.getParameter("random select");
       String rRandom = request.getParameter("random select with replacement");
@@ -67,8 +67,8 @@ public class SWE432assignment4 extends HttpServlet
   public void doGet (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-      String result = "";
       String input = "";
+      String result = request.getParameter("display");
       String names = request.getParameter("names");
       String random = request.getParameter("random select");
       String rRandom = request.getParameter("random select with replacement");
@@ -162,7 +162,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <br><br>");
     out.println("</form>");
     out.println("</div>");
-    out.println("<p id=\"display\" class=\"display\">" + result + "</p>");
+    out.println("<p id=\"display\" class=\"display\" name=\"display\">" + result + "</p>");
     out.println("<script>");
     out.println(" function reset() {");
     out.println("   document.getElementById(\"form1\").reset();");
