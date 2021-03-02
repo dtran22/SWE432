@@ -70,7 +70,7 @@ public class SWE432assignment4 extends HttpServlet
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out, names, random, rRandom, woRandom, sorted, reversed, result);
+      PrintBody(out);
       PrintTail(out);
     }
 
