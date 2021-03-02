@@ -34,7 +34,7 @@ public class SWE432assignment4 extends HttpServlet
         if (random != null) {
           Random r = new Random();
           int i = r.nextInt(namesArr.length);
-          random = namesArr[i];
+          random = "hi";//namesArr[i];
           result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
         }
         if(rRandom != null) {
