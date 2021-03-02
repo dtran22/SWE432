@@ -110,7 +110,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" Sorted order</label><br>");
     out.println(" <label for=\"reversed\">");
     out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed\" value=\"reversed\">");
-    out.println(" Reversed order</label>");
+    out.println(" Reversed order</label><br><br>");
     out.println(" <textarea rows=\"4\" cols=\"50\" name=\"result\" form=\"form1\">" + result + "</textarea>");
     out.println(" </div><br><br>");
     out.println(" <input class=\"center\" type=\"button\" value=\"Try\" name=\"Try\">");
