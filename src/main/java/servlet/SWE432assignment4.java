@@ -23,7 +23,7 @@ public class SWE432assignment4 extends HttpServlet
       String input = "";
       String result = "";
       String names = request.getParameter("names");
-      String random = "";
+      String random = "random";
       String rRandom = "random select with replacement";
       String woRandom = "random select without replacement";
       String sorted = "sorted order";
@@ -32,7 +32,7 @@ public class SWE432assignment4 extends HttpServlet
         input = new String(names);
       }
       //if(request.getParameter("Try") != null) {
-      String[] namesArr = input.split(" ");
+      String[] namesArr = names.split(" ");
       if (request.getParameter("random select") != null) {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
