@@ -30,29 +30,32 @@ public class SWE432assignment4 extends HttpServlet
       String reversed = request.getParameter("reversed");
       if ((names != null) && (names.length() > 0)) {
         input = new String(names);
+      }
+      if (random != null) {
         String[] namesArr = input.split(" ");
-        if (random != null) {
-          Random r = new Random();
-          int i = r.nextInt(namesArr.length);
-          random = "hi";//namesArr[i];
-          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-        }
-        if(rRandom != null) {
-          Random r = new Random();
-          int i = r.nextInt(namesArr.length);
-          rRandom = namesArr[i];
-          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-        }
-        if(sorted != null) {
-          Arrays.sort(namesArr);
-          sorted = Arrays.toString(namesArr);
-          result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
-        }
-        if(reversed != null) {
-          Arrays.sort(namesArr, Collections.reverseOrder());
-          reversed = Arrays.toString(namesArr);
-          result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
-        }
+        Random r = new Random();
+        int i = r.nextInt(namesArr.length);
+        random = namesArr[i];
+        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+      }
+      if(rRandom != null) {
+        String[] namesArr = input.split(" ");
+        Random r = new Random();
+        int i = r.nextInt(namesArr.length);
+        rRandom = namesArr[i];
+        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+      }
+      if(sorted != null) {
+        String[] namesArr = input.split(" ");
+        Arrays.sort(namesArr);
+        sorted = Arrays.toString(namesArr);
+        result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
+      }
+      if(reversed != null) {
+        String[] namesArr = input.split(" ");
+        Arrays.sort(namesArr, Collections.reverseOrder());
+        reversed = Arrays.toString(namesArr);
+        result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
       }
       //if(request.getParameter("Try") != null) {
 
