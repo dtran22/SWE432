@@ -21,7 +21,7 @@ public class SWE432assignment4 extends HttpServlet
     throws ServletException, IOException
     {
       String input = "";
-      String result = "";
+      String result = "hi";
       String names = request.getParameter("names");
       if ((names != null) && (names.length() > 0)) {
         input = new String(names);
@@ -30,13 +30,14 @@ public class SWE432assignment4 extends HttpServlet
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        //result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        result += Arrays.toString(namesArr);
       }
       if(request.getParameter("replacementRandom") != null) {
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        result = result + "Randomly selected with replacement: " + (namesArr[i]) + "\n";
+        result += request.getParameter("replacementRandom");//result + "Randomly selected with replacement: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("woReplacementRandom") != null) {
         String[] namesArr = input.split(" ");
@@ -54,9 +55,6 @@ public class SWE432assignment4 extends HttpServlet
         Arrays.sort(namesArr, Collections.reverseOrder());
         result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
       }
-      //if(request.getParameter("Try") != null) {
-
-      //}
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
