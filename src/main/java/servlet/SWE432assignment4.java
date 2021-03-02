@@ -33,7 +33,7 @@ public class SWE432assignment4 extends HttpServlet
       }
       //if(request.getParameter("Try") != null) {
       String[] namesArr = input.split(" ");
-      if (request.getParameter("random") == "random") {
+      if (request.getParameter("randomSelect") == "random") {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
@@ -80,7 +80,7 @@ public class SWE432assignment4 extends HttpServlet
       }
       //if(request.getParameter("Try") != null) {
       String[] namesArr = input.split(" ");
-      if (request.getParameter("random") == "random") {
+      if (request.getParameter("randomSelect") == "random") {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
