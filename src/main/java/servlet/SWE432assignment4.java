@@ -23,35 +23,35 @@ public class SWE432assignment4 extends HttpServlet
       String input = "";
       String result = "";
       String names = request.getParameter("names");
-      String random = request.getParameter("randomSelect");
-      String rRandom = request.getParameter("replacementRandom");
-      String woRandom = request.getParameter("woReplacementRandom");
-      String sorted = request.getParameter("sorted");
-      String reversed = request.getParameter("reversed");
+      String random = "random";
+      String rRandom = "random with replacement";
+      String woRandom = "random without replacement";
+      String sorted = "sorted order";
+      String reversed = "reversed order";
       if ((names != null) && (names.length() > 0)) {
         input = new String(names);
       }
-      if (random != null) {
+      if (request.getParameter("randomSelect") == "random") {
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
-      if(rRandom != null) {
+      if(request.getParameter("replacementRandom") != null) {
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         rRandom = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
-      if(sorted != null) {
+      if(request.getParameter("sorted") != null) {
         String[] namesArr = input.split(" ");
         Arrays.sort(namesArr);
         sorted = Arrays.toString(namesArr);
         result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
       }
-      if(reversed != null) {
+      if(request.getParameter("reversed") != null) {
         String[] namesArr = input.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
         reversed = Arrays.toString(namesArr);
