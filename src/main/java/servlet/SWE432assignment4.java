@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SWE432assignment4 extends HttpServlet
 {
-  static String Style = "mystyle.css";
+  static String Style = "http://mason.gmu.edu/~dtran22/mystyle.css";
 
   String result = "";
 
@@ -74,7 +74,6 @@ public class SWE432assignment4 extends HttpServlet
   {
     out.println("<html>");
     out.println("");
-
     out.println("<head>");
     out.println("<title>SWE 432 assignment4</title>");
     out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"" + Style + "\">");
