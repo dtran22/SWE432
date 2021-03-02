@@ -38,7 +38,7 @@ public class SWE432assignment4 extends HttpServlet
         int i = r.nextInt(namesArr.length);
         result = result + "Randomly selected with replacement: " + (namesArr[i]) + "\n";
       }
-      if(request.getParameter("woreplacementRandom") != null) {
+      if(request.getParameter("woReplacementRandom") != null) {
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
