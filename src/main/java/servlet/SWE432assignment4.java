@@ -21,17 +21,18 @@ public class SWE432assignment4 extends HttpServlet
     throws ServletException, IOException
     {
       String input = "";
-      String result = request.getParameter("display");
+      String result = "";
       String names = request.getParameter("names");
-      String random = request.getParameter("random select");
-      String rRandom = request.getParameter("random select with replacement");
-      String woRandom = request.getParameter("random select without replacement");
-      String sorted = request.getParameter("sorted order");
-      String reversed = request.getParameter("reversed order");
+      String random = "random";
+      String rRandom = "random select with replacement";
+      String woRandom = "random select without replacement";
+      String sorted = "sorted order";
+      String reversed = "reversed order";
+      String operation = request.getParameter("Try");
       if ((names != null) && (names.length() > 0))
         input = new String(names);
 
-      if(request.getParameter("Try") != null) {
+      if(operation.equals("Try")) {
         String[] namesArr = input.split("\\s+");
         if (request.getParameter("random select") != null) {
           Random r = new Random();
@@ -68,17 +69,18 @@ public class SWE432assignment4 extends HttpServlet
     throws ServletException, IOException
     {
       String input = "";
-      String result = request.getParameter("display");
+      String result = "";
       String names = request.getParameter("names");
-      String random = request.getParameter("random select");
-      String rRandom = request.getParameter("random select with replacement");
-      String woRandom = request.getParameter("random select without replacement");
-      String sorted = request.getParameter("sorted order");
-      String reversed = request.getParameter("reversed order");
+      String random = "random";
+      String rRandom = "random select with replacement";
+      String woRandom = "random select without replacement";
+      String sorted = "sorted order";
+      String reversed = "reversed order";
+      String operation = request.getParameter("Try");
       if ((names != null) && (names.length() > 0))
         input = new String(names);
 
-      if(request.getParameter("Try") != null) {
+      if(operation.equals("Try")) {
         String[] namesArr = input.split("\\s+");
         if (request.getParameter("random select") != null) {
           Random r = new Random();
