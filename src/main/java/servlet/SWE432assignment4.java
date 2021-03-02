@@ -32,25 +32,25 @@ public class SWE432assignment4 extends HttpServlet
         input = new String(names);
       }
       //if(request.getParameter("Try") != null) {
-      String[] namesArr = names.split(" ");
-      if (request.getParameter("random select") != null) {
+      String[] namesArr = input.split(" ");
+      if (request.getParameter("random") == "random") {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
-      if(request.getParameter("random select with replacement") != null) {
+      if(request.getParameter("replacementRandom") != null) {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         rRandom = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
-      if(request.getParameter("sorted order") != null) {
+      if(request.getParameter("sorted") != null) {
         Arrays.sort(namesArr);
         sorted = Arrays.toString(namesArr);
         result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
       }
-      if(request.getParameter("reversed order") != null) {
+      if(request.getParameter("reversed") != null) {
         Arrays.sort(namesArr, Collections.reverseOrder());
         reversed = Arrays.toString(namesArr);
         result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
@@ -80,24 +80,24 @@ public class SWE432assignment4 extends HttpServlet
       }
       //if(request.getParameter("Try") != null) {
       String[] namesArr = input.split(" ");
-      if (request.getParameter("random select") != null) {
+      if (request.getParameter("random") == "random") {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
-      if(request.getParameter("random select with replacement") != null) {
+      if(request.getParameter("replacementRandom") != null) {
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         rRandom = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
-      if(request.getParameter("sorted order") != null) {
+      if(request.getParameter("sorted") != null) {
         Arrays.sort(namesArr);
         sorted = Arrays.toString(namesArr);
         result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
       }
-      if(request.getParameter("reversed order") != null) {
+      if(request.getParameter("reversed") != null) {
         Arrays.sort(namesArr, Collections.reverseOrder());
         reversed = Arrays.toString(namesArr);
         result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
@@ -139,19 +139,19 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <input type=\"text\" id=\"name\" name=\"names\" value=\"" + names + "\"><br><br>");
     out.println(" <div class=\"inner\">");
     out.println(" <label for=\"random\">");
-    out.println(" <input type=\"checkbox\" id=\"random\" name=\"random select\" value=\"" + random + "\">");
+    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"" + random + "\">");
     out.println(" Random select</label><br>");
     out.println(" <label for=\"wreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"random select with replacement\" value=\"" + rRandom + "\">");
+    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"" + rRandom + "\">");
     out.println(" Random select with replacement</label><br>");
     out.println(" <label for=\"woreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"random select without replacement\" value=\"" + woRandom + "\">");
+    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"" + woRandom + "\">");
     out.println(" Random select without replacement</label><br>");
     out.println(" <label for=\"sorted\">");
-    out.println(" <input type=\"checkbox\" id=\"sorted\" name=\"sorted order\" value=\"" + sorted + "\">");
+    out.println(" <input type=\"checkbox\" id=\"sorted\" name=\"sorted\" value=\"" + sorted + "\">");
     out.println(" Sorted order</label><br>");
     out.println(" <label for=\"reversed\">");
-    out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed order\" value=\"" + reversed + "\">");
+    out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed\" value=\"" + reversed + "\">");
     out.println(" Reversed order</label>");
     out.println(" </div><br><br>");
     out.println(" <input class=\"center\" type=\"button\" value=\"Try\" name=\"Try\">");
