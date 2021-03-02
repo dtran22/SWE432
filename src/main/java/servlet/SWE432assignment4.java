@@ -30,28 +30,31 @@ public class SWE432assignment4 extends HttpServlet
       String reversed = request.getParameter("reversed order");
       if ((names != null) && (names.length() > 0))
         input = new String(names);
-      String[] namesArr = input.split("\\s+");
-      if (request.getParameter("random select") != null) {
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
-        random = namesArr[i];
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-      }
-      if(request.getParameter("random select with replacement") != null) {
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
-        rRandom = namesArr[i];
-        result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
-      }
-      if(request.getParameter("sorted order") != null) {
-        Arrays.sort(namesArr);
-        sorted = Arrays.toString(namesArr);
-        result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
-      }
-      if(request.getParameter("reversed order") != null) {
-        Arrays.sort(namesArr, Collections.reverseOrder());
-        reversed = Arrays.toString(namesArr);
-        result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
+
+      if(request.getParameter("Try") != null) {
+        String[] namesArr = input.split("\\s+");
+        if (request.getParameter("random select") != null) {
+          Random r = new Random();
+          int i = r.nextInt(namesArr.length);
+          random = namesArr[i];
+          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        }
+        if(request.getParameter("random select with replacement") != null) {
+          Random r = new Random();
+          int i = r.nextInt(namesArr.length);
+          rRandom = namesArr[i];
+          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        }
+        if(request.getParameter("sorted order") != null) {
+          Arrays.sort(namesArr);
+          sorted = Arrays.toString(namesArr);
+          result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
+        }
+        if(request.getParameter("reversed order") != null) {
+          Arrays.sort(namesArr, Collections.reverseOrder());
+          reversed = Arrays.toString(namesArr);
+          result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
+        }
       }
 
       response.setContentType("text/html");
@@ -64,10 +67,47 @@ public class SWE432assignment4 extends HttpServlet
   public void doGet (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
+      String result = "";
+      String input = "";
+      String names = request.getParameter("names");
+      String random = request.getParameter("random select");
+      String rRandom = request.getParameter("random select with replacement");
+      String woRandom = request.getParameter("random select without replacement");
+      String sorted = request.getParameter("sorted order");
+      String reversed = request.getParameter("reversed order");
+      if ((names != null) && (names.length() > 0))
+        input = new String(names);
+
+      if(request.getParameter("Try") != null) {
+        String[] namesArr = input.split("\\s+");
+        if (request.getParameter("random select") != null) {
+          Random r = new Random();
+          int i = r.nextInt(namesArr.length);
+          random = namesArr[i];
+          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        }
+        if(request.getParameter("random select with replacement") != null) {
+          Random r = new Random();
+          int i = r.nextInt(namesArr.length);
+          rRandom = namesArr[i];
+          result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
+        }
+        if(request.getParameter("sorted order") != null) {
+          Arrays.sort(namesArr);
+          sorted = Arrays.toString(namesArr);
+          result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
+        }
+        if(request.getParameter("reversed order") != null) {
+          Arrays.sort(namesArr, Collections.reverseOrder());
+          reversed = Arrays.toString(namesArr);
+          result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
+        }
+      }
+
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out);
+      PrintBody(out, names, random, rRandom, woRandom, sorted, reversed, result);
       PrintTail(out);
     }
 
@@ -114,8 +154,8 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed order\" value=\"" + reversed + "\">");
     out.println(" Reversed order</label>");
     out.println(" </div><br><br>");
-    //out.println(" <input class=\"center\" type=\"button\" value=\"Try\" onclick=\"myFunction()\">");
-    //out.println(" <br><br>");
+    out.println(" <input class=\"center\" type=\"button\" value=\"Try\" name=\"Try\">");
+    out.println(" <br><br>");
     out.println(" <input class=\"center\" type=\"button\" onclick=\"reset()\" value=\"Clear\">");
     out.println(" <br><br>");
     out.println(" <input class=\"center\" type=\"submit\" value=\"Submit\">");
