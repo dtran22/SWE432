@@ -23,26 +23,19 @@ public class SWE432assignment4 extends HttpServlet
       String input = "";
       String result = "";
       String names = request.getParameter("names");
-      String random = "random";
-      String rRandom = "random with replacement";
-      String woRandom = "random without replacement";
-      String sorted = "sorted order";
-      String reversed = "reversed order";
       if ((names != null) && (names.length() > 0)) {
         input = new String(names);
       }
-      if (request.getParameter("randomSelect") == "random") {
+      if (request.getParameter("randomSelect") != null) {
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        random = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("replacementRandom") != null) {
         String[] namesArr = input.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        rRandom = namesArr[i];
         result = result + "Randomly Selected: " + (namesArr[i]) + "\n";
       }
       if(request.getParameter("sorted") != null) {
@@ -64,7 +57,7 @@ public class SWE432assignment4 extends HttpServlet
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out, names, random, rRandom, woRandom, sorted, reversed, result);
+      PrintBody(out, names, result);
       PrintTail(out);
     }
 
@@ -106,20 +99,21 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <input type=\"text\" id=\"name\" name=\"names\" value=\"" + names + "\"><br><br>");
     out.println(" <div class=\"inner\">");
     out.println(" <label for=\"random\">");
-    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"" + random + "\">");
+    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"random\">");
     out.println(" Random select</label><br>");
     out.println(" <label for=\"wreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"" + rRandom + "\">");
+    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"rRandom\">");
     out.println(" Random select with replacement</label><br>");
     out.println(" <label for=\"woreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"" + woRandom + "\">");
+    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"woRandom\">");
     out.println(" Random select without replacement</label><br>");
     out.println(" <label for=\"sorted\">");
-    out.println(" <input type=\"checkbox\" id=\"sorted\" name=\"sorted\" value=\"" + sorted + "\">");
+    out.println(" <input type=\"checkbox\" id=\"sorted\" name=\"sorted\" value=\"sorted\">");
     out.println(" Sorted order</label><br>");
     out.println(" <label for=\"reversed\">");
-    out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed\" value=\"" + reversed + "\">");
+    out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed\" value=\"reversed\">");
     out.println(" Reversed order</label>");
+    out.println(" <textarea rows=\"4\" cols=\"50\" name=\"result\">" + result + "<textarea>");
     out.println(" </div><br><br>");
     out.println(" <input class=\"center\" type=\"button\" value=\"Try\" name=\"Try\">");
     out.println(" <br><br>");
@@ -129,7 +123,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <br><br>");
     out.println("</form>");
     out.println("</div>");
-    out.println("<p id=\"display\" class=\"display\" name=\"display\">" + result + "</p>");
+    //out.println("<p id=\"display\" class=\"display\" name=\"display\">" + result + "</p>");
     out.println("<script>");
     out.println(" function reset() {");
     out.println("   document.getElementById(\"form1\").reset();");
