@@ -41,13 +41,11 @@ public class SWE432assignment4 extends HttpServlet
       if(request.getParameter("sorted") != null) {
         String[] namesArr = input.split(" ");
         Arrays.sort(namesArr);
-        sorted = Arrays.toString(namesArr);
         result = result + "Sorted order: " + Arrays.toString(namesArr) + "\n";
       }
       if(request.getParameter("reversed") != null) {
         String[] namesArr = input.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
-        reversed = Arrays.toString(namesArr);
         result = result + "Reversed order: " + Arrays.toString(namesArr) + "\n";
       }
       //if(request.getParameter("Try") != null) {
@@ -83,7 +81,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println("");
   }
 
-  private void PrintBody (PrintWriter out, String names, String random, String rRandom, String woRandom, String sorted, String reversed, String result)
+  private void PrintBody (PrintWriter out, String names, String result)
   {
     out.println("<body>");
     out.println("<h1>SWE 432</h1>");
@@ -143,7 +141,7 @@ public class SWE432assignment4 extends HttpServlet
 
   private void PrintBody (PrintWriter out)
   {
-     PrintBody(out, "", "", "", "", "", "", "");
+     PrintBody(out, "", "");
   }
 
   private void PrintTail (PrintWriter out)
