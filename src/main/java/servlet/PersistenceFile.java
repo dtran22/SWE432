@@ -20,7 +20,7 @@ import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "PersistenceFile", urlPatterns = {"/file"})
 public class PersistenceFile extends HttpServlet{
-  static enum Data {AGE, NAME};
+  static enum Data {AGE, NAME, TOWN};
   static String RESOURCE_FILE = "entries.txt";
   static final String VALUE_SEPARATOR = ";";
 
@@ -45,6 +45,7 @@ public class PersistenceFile extends HttpServlet{
   {
      String name = request.getParameter(Data.NAME.name());
      String age = request.getParameter(Data.AGE.name());
+     String town = request.getParameter(Data.TOWN.name());
 
      String error = "";
      if(name == null){
@@ -73,13 +74,18 @@ public class PersistenceFile extends HttpServlet{
           }
      }
 
+     if(town == null){
+       error="<li>Hometown is required</li>";
+       town = "";
+     }
+
      response.setContentType("text/html");
      PrintWriter out = response.getWriter();
 
      if (error.length() == 0){
        PrintWriter entriesPrintWriter =
           new PrintWriter(new FileWriter(RESOURCE_FILE, true), true);
-       entriesPrintWriter.println(name+VALUE_SEPARATOR+age);
+       entriesPrintWriter.println(name+VALUE_SEPARATOR+age+VALUE_SEPARATOR+town);
        entriesPrintWriter.close();
 
        printHead(out);
@@ -87,7 +93,7 @@ public class PersistenceFile extends HttpServlet{
        printTail(out);
      }else{
        printHead(out);
-       printBody(out, name, age, error);
+       printBody(out, name, age, town. error);
        printTail(out);
      }
   }
@@ -128,7 +134,7 @@ public class PersistenceFile extends HttpServlet{
    *  Prints the <BODY> of the HTML page
   ********************************************************* */
   private void printBody (
-    PrintWriter out, String name, String age, String error){
+    PrintWriter out, String name, String age, String town, String error){
      out.println("<body onLoad=\"setFocus()\">");
      out.println("<p>");
      out.println(
@@ -158,6 +164,11 @@ public class PersistenceFile extends HttpServlet{
      out.println("   <td><input type=\"text\"  name=\""+Data.AGE.name()
       +"\" oninput=\"this.value=this.value.replace(/[^0-9]/g,'');\" value=\""
       +age+"\" size=3 required></td>");
+     out.println("  </tr>");
+     out.println("  <tr>");
+     out.println("   <td>Hometown:</td>");
+     out.println("   <td><input type=\"text\" name=\""+Data.TOWN.name()
+      +"\" value=\""+town+"\" size=30 required></td>");
      out.println("  </tr>");
      out.println(" </table>");
      out.println(" <br>");
