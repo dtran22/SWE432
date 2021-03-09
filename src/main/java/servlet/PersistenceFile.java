@@ -93,7 +93,7 @@ public class PersistenceFile extends HttpServlet{
        printTail(out);
      }else{
        printHead(out);
-       printBody(out, name, age, town. error);
+       printBody(out, name, age, town, error);
        printTail(out);
      }
   }
@@ -108,7 +108,7 @@ public class PersistenceFile extends HttpServlet{
      response.setContentType("text/html");
      PrintWriter out = response.getWriter();
      printHead(out);
-     printBody(out, "", "", "");
+     printBody(out, "", "", "", "");
      printTail(out);
   }
 
