@@ -24,10 +24,10 @@ import javax.servlet.http.HttpServletResponse;
         urlPatterns = {"/assignment4"}
     )
 
-public class SWE432assignment4 extends HttpServlet
+public class SWE432assignment6 extends HttpServlet
 {
   static enum Data {NAMES, RESULT};
-  static string RESOURCE_FILE = "names.json";
+  static String RESOURCE_FILE = "names.json";
 
   static String Domain = "";
   static String Path = "/";
@@ -113,7 +113,7 @@ public class SWE432assignment4 extends HttpServlet
   public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-      String names = request.getParameter(Data.NAME.name());
+      String names = request.getParameter(Data.NAMES.name());
       String result = new String();
 
       String error = "";
@@ -125,7 +125,7 @@ public class SWE432assignment4 extends HttpServlet
       else{
 
       //if (request.getParameter("randomSelect") != null) {
-        String[] names = nameStr.split(" ");
+        String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         result = namesArr[i];
@@ -159,7 +159,7 @@ public class SWE432assignment4 extends HttpServlet
         Entries newEntries = entryManager.save(names, result);
 
         printHead(out);
-        if(newEntires == null) {
+        if(newEntries == null) {
           error += "<li>Could not save entry.</li>";
           printBody(out, names, result, error);
         }
