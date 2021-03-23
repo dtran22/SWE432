@@ -24,8 +24,7 @@ import javax.servlet.annotation.WebServlet;
         urlPatterns = {"/assignment6"}
     )
 
-public class SWE432assignment6 extends HttpServlet
-{
+public class SWE432assignment6 extends HttpServlet {
   static enum Data {NAMES, RESULT};
   static String RESOURCE_FILE = "names.json";
 
@@ -110,9 +109,10 @@ public class SWE432assignment6 extends HttpServlet
     }
   }
 
+  @Override
   public void doPost (HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-    {
+     throws ServletException, IOException
+     {
       String names = request.getParameter(Data.NAMES.name());
       String result = new String();
 
