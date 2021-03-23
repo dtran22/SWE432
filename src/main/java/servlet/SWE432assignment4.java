@@ -48,11 +48,11 @@ public class SWE432assignment4 extends HttpServlet
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
       }**/
-      result = random;
+      result = new String(random);
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out, names, random);
+      PrintBody(out, names, result);
       PrintTail(out);
     }
 
