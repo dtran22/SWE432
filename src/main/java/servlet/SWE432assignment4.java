@@ -22,7 +22,7 @@ public class SWE432assignment4 extends HttpServlet
     {
       String names = request.getParameter("names");
       String randomStr = request.getParameter("randomSelect");
-
+      String random = new String();
       //if (request.getParameter("randomSelect") != null) {
         String[] namesArr = names.split(" ");
         Random r = new Random();
@@ -48,11 +48,12 @@ public class SWE432assignment4 extends HttpServlet
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
       }**/
+      random = new String(randomStr);
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out, names, randomStr);
+      PrintBody(out, names, randomStr, random);
       PrintTail(out);
     }
 
@@ -110,7 +111,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println("");
   }
 
-  private void PrintBody (PrintWriter out, String names, String random)
+  private void PrintBody (PrintWriter out, String names, String randomStr, String random)
   {
     out.println("<body>");
     out.println("<h1>SWE 432</h1>");
