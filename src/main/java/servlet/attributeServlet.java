@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 // Import Java Libraries
 import java.io.*;
 import java.util.Enumeration;
-
+@WebServlet(name = "attributeServlet", urlPatterns = {"/attributeServlet"})
 public class attributeServlet extends HttpServlet
 {
 public void doGet (HttpServletRequest request, HttpServletResponse response)
@@ -18,18 +18,20 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
 
    String name   = request.getParameter("attrib_name");
    String value  = request.getParameter("attrib_value");
-   String age = request.getParameter("attrib_age");
+   String age    = request.getParameter("attrib_age");
+   String ageValue = request.getParameter("attrib_ageValue");
    String remove = request.getParameter("attrib_remove");
 
    if (remove != null && remove.equals("on"))
    {
       session.removeAttribute(name);
+      session.removeAttribute(age);
    }
    else
    {
-      if ((name != null && name.length() > 0) && (value != null && value.length() > 0) && (age != null && age.length() > 0))
+      if ((name != null && name.length() > 0) && (value != null && value.length() > 0) && (age != null && age.length() > 0) && (ageValue != null && ageValue.length() > 0))
       {
-         session.setAttribute(name, value, age);
+         session.setAttribute(name, value, age, ageValue);
       }
 
    }
@@ -62,6 +64,9 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    out.println(" Age: ");
    out.println(" <input type=\"text\" size=\"10\" name=\"attrib_age\">");
 
+   out.println(" Age Value: ");
+   out.println(" <input type=\"text\" size=\"10\" name=\"attrib_ageValue\">");
+
    out.println(" <br><input type=\"checkbox\" name=\"attrib_remove\">Remove");
    out.println(" <input type=\"submit\" name=\"update\" value=\"Update\">");
    out.println("</form>");
@@ -74,6 +79,7 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
       String att_name  = (String) e.nextElement();
       String att_value = (String) session.getAttribute(att_name);
       String att_age   = (String) e.nextElement();
+      String att_ageValue = (String) session.getAttribute(att_age);
 
       out.print  ("<br><b>Name:</b> ");
       out.println(att_name);
@@ -81,6 +87,8 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
       out.println(att_value);
       out.print  ("<br><b>Age:</b> ");
       out.println(att_age);
+      out.print  ("<br><b>Age Value:</b> ");
+      out.println(att_ageValue);
    } //end while
 
    out.println("</body>");
