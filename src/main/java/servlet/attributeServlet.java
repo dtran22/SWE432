@@ -108,7 +108,7 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
      out.print  ("<br>Last accessed time: ");
      out.println(new Date(session.getLastAccessedTime()));
      // Get the max-inactive-interval setting
-     out.print  ("<br>Maximum inactive interval (seconds): ");
+     out.print  ("<br>Maximum inactive interval (seconds): <br><br>");
      out.println(session.getMaxInactiveInterval());
 
      out.println("Enter name and value of an attribute");
