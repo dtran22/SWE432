@@ -148,42 +148,28 @@ public class SWE432assignment6 extends HttpServlet {
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
       }*/
-      //response.setContentType("text/html");
-      //PrintWriter out = response.getWriter();
-
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
-      /**if(error.length() == 0) {
+      if(error.length() == 0) {
         EntryManager entryManager = new EntryManager();
         entryManager.setFilePath(RESOURCE_FILE);
         Entries newEntries = entryManager.save(names, result);
-        printHead(out);
+
+        PrintHead(out);
         if(newEntries == null) {
           error += "<li>Could not save entry.</li>";
-          printBody(out, names, result, error);
+          PrintBody(out, names, result, error);
         }
         else {
           printResponseBody(out, entryManager.getAllAsHTMLTable(newEntries));
         }
-        printTail(out);
+        PrintTail(out);
       }
       else {
-        printHead(out);
-        printBody(out, names, result, error);
-        printTail(out);
-      }*/
-      EntryManager entryManager = new EntryManager();
-      entryManager.setFilePath(RESOURCE_FILE);
-      Entries newEntries = entryManager.save(names, result);
-      printHead(out);
-      if(newEntries == null) {
-        error += "<li>Could not save entry.</li>";
-        printBody(out, names, result, error);
+        PrintHead(out);
+        PrintBody(out, names, result, error);
+        PrintTail(out);
       }
-      else {
-        printResponseBody(out, entryManager.getAllAsHTMLTable(newEntries));
-      }
-      printTail(out);
 
     }
 
