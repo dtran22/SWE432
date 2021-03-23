@@ -1,7 +1,6 @@
 package servlet;
-import java.io.*;
-import java.util.*;
-
+import java.util.List;
+import java.util.ArrayList;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -150,14 +149,15 @@ public class SWE432assignment6 extends HttpServlet {
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
       }**/
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
+      //response.setContentType("text/html");
+      //PrintWriter out = response.getWriter();
 
       if(error.length() == 0) {
         EntryManager entryManager = new EntryManager();
         entryManager.setFilePath(RESOURCE_FILE);
         Entries newEntries = entryManager.save(names, result);
-
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
         printHead(out);
         if(newEntries == null) {
           error += "<li>Could not save entry.</li>";
@@ -169,6 +169,8 @@ public class SWE432assignment6 extends HttpServlet {
         printTail(out);
       }
       else {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
         printHead(out);
         printBody(out, names, result, error);
         printTail(out);
