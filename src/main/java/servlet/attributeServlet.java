@@ -20,7 +20,7 @@ public class attributeServlet extends HttpServlet
 public void doGet (HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException
 {
-  String action = reques.getParameter("action");
+  String action = request.getParameter("action");
 
   if(action != null && action.equals("invalidate")) {
     // Get session object
