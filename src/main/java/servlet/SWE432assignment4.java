@@ -168,7 +168,7 @@ public class SWE432assignment4 extends HttpServlet
 
   private void PrintBody (PrintWriter out)
   {
-     PrintBody(out, "", "");
+     PrintBody(out, "", "", "");
   }
 
   private void PrintTail (PrintWriter out)
