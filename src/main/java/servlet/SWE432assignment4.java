@@ -21,13 +21,13 @@ public class SWE432assignment4 extends HttpServlet
     throws ServletException, IOException
     {
       String names = request.getParameter("names");
-      String randomStr = request.getParameter("randomSelect");
       String random = new String();
+      String result - new String();
       //if (request.getParameter("randomSelect") != null) {
         String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        randomStr = namesArr[i];
+        random = namesArr[i];
       //}
       /**
       if(request.getParameter("replacementRandom") != null) {
@@ -48,12 +48,11 @@ public class SWE432assignment4 extends HttpServlet
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
       }**/
-      random = new String(randomStr);
-
+      result = random;
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
-      PrintBody(out, names, randomStr, random);
+      PrintBody(out, names, random);
       PrintTail(out);
     }
 
@@ -111,7 +110,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println("");
   }
 
-  private void PrintBody (PrintWriter out, String names, String randomStr, String random)
+  private void PrintBody (PrintWriter out, String names, String result)
   {
     out.println("<body>");
     out.println("<h1>SWE 432</h1>");
@@ -127,7 +126,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <input type=\"text\" id=\"name\" name=\"names\" value=\"" + names + "\"><br><br>");
     out.println(" <div class=\"inner\">");
     out.println(" <label for=\"random\">");
-    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"" + random + "\">");
+    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"randomSelect\">");
     out.println(" Random select</label><br>");
     out.println(" <label for=\"wreplacement\">");
     out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"replacementRandom\">");
@@ -141,6 +140,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <label for=\"reversed\">");
     out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed\" value=\"reversed\">");
     out.println(" Reversed order</label><br><br>");
+    out.println(" <input type=\"text\" id=\"result\" name\"result\" value=\"" + result + "\"><br><br>");
     out.println(" </div><br><br>");
     out.println(" <input class=\"center\" type=\"button\" onclick=\"reset()\" value=\"Clear\">");
     out.println(" <br><br>");
@@ -168,7 +168,7 @@ public class SWE432assignment4 extends HttpServlet
 
   private void PrintBody (PrintWriter out)
   {
-     PrintBody(out, "", "", "");
+     PrintBody(out, "", "");
   }
 
   private void PrintTail (PrintWriter out)
