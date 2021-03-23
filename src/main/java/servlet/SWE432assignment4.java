@@ -29,6 +29,7 @@ public class SWE432assignment4 extends HttpServlet
         int i = r.nextInt(namesArr.length);
         randomStr = namesArr[i];
       //}
+      /**
       if(request.getParameter("replacementRandom") != null) {
         String[] namesArr = names.split(" ");
         Random r = new Random();
@@ -46,7 +47,7 @@ public class SWE432assignment4 extends HttpServlet
       if(request.getParameter("reversed") != null) {
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
-      }
+      }**/
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
