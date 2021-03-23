@@ -13,15 +13,15 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
 
 @WebServlet(
         name = "assignment4",
-        urlPatterns = {"/assignment4"}
+        urlPatterns = {"/assignment6"}
     )
 
 public class SWE432assignment6 extends HttpServlet
@@ -306,7 +306,7 @@ public class SWE432assignment6 extends HttpServlet
 
   private void PrintBody (PrintWriter out)
   {
-     PrintBody(out, "", "");
+     PrintBody(out, "", "", "");
   }
 
   private void PrintTail (PrintWriter out)
