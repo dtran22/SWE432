@@ -147,16 +147,16 @@ public class SWE432assignment6 extends HttpServlet {
       if(request.getParameter("reversed") != null) {
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
-      }**/
+      }*/
       //response.setContentType("text/html");
       //PrintWriter out = response.getWriter();
 
-      if(error.length() == 0) {
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
+      /**if(error.length() == 0) {
         EntryManager entryManager = new EntryManager();
         entryManager.setFilePath(RESOURCE_FILE);
         Entries newEntries = entryManager.save(names, result);
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
         printHead(out);
         if(newEntries == null) {
           error += "<li>Could not save entry.</li>";
@@ -168,12 +168,23 @@ public class SWE432assignment6 extends HttpServlet {
         printTail(out);
       }
       else {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
         printHead(out);
         printBody(out, names, result, error);
         printTail(out);
+      }*/
+      EntryManager entryManager = new EntryManager();
+      entryManager.setFilePath(RESOURCE_FILE);
+      Entries newEntries = entryManager.save(names, result);
+      printHead(out);
+      if(newEntries == null) {
+        error += "<li>Could not save entry.</li>";
+        printBody(out, names, result, error);
       }
+      else {
+        printResponseBody(out, entryManager.getAllAsHTMLTable(newEntries));
+      }
+      printTail(out);
+
     }
 
   public void doGet (HttpServletRequest request, HttpServletResponse response)
