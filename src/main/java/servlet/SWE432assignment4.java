@@ -23,8 +23,10 @@ public class SWE432assignment4 extends HttpServlet
       String names = request.getParameter("names");
       String random = new String();
       String result = new String();
+
+      String nameStr = new String(names);
       //if (request.getParameter("randomSelect") != null) {
-        String[] namesArr = names.split(" ");
+        String[] namesArr = nameStr.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
         random = namesArr[i];
