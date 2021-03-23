@@ -28,7 +28,7 @@ public class SWE432assignment6 extends HttpServlet {
 
   static String Domain = "";
   static String Path = "/";
-  static String Servlet = "json";
+  static String Servlet = "assignment6";
 
   static String OperationAdd = "Add";
   static String Style = "http://mason.gmu.edu/~dtran22/mystyle.css";
