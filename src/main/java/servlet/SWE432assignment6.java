@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(
-        name = "assignment4",
+        name = "assignment6",
         urlPatterns = {"/assignment6"}
     )
 
