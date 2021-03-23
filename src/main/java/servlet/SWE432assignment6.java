@@ -54,7 +54,7 @@ public class SWE432assignment4 extends HttpServlet
     public Entries save(String names, String result) {
       Entries entries = getAll();
       Entry newEntry = new Entry();
-      newEntry.names = names
+      newEntry.names = names;
       newEntry.result = result;
       entries.entries.add(newEntry);
       try {
