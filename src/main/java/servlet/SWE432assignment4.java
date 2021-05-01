@@ -16,41 +16,76 @@ import javax.servlet.http.HttpServletResponse;
 public class SWE432assignment4 extends HttpServlet
 {
   static String Style = "http://mason.gmu.edu/~dtran22/mystyle.css";
+  ArrayList<String> selected = new ArrayList<String>();
 
   public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
       String names = request.getParameter("names");
-      String random = new String();
+      String random = request.getParameter("randomSelect");
+      String wReplacement = request.getParameter("replacementRandom");
+      String woReplacement = request.getParameter("woReplacementRandom");
+      String sorted = request.getParameter("sorted");
+      String reversed = request.getParameter("reversed");
+      String randomResult = new String();
+      String woReplacementResult = new String();
+      String wReplacementResult = new String();
+      String sortedResult = new String();
+      String reversedResult = new String();
       String result = new String();
-
-      String nameStr = new String(names);
-      //if (request.getParameter("randomSelect") != null) {
+      if (random != null) {
         String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
-        random = namesArr[i];
-      //}
-      /**
-      if(request.getParameter("replacementRandom") != null) {
-        String[] namesArr = names.split(" ");
-        Random r = new Random();
-        int i = r.nextInt(namesArr.length);
+        randomResult = "Random result: " + namesArr[i];
+        result += randomResult + "<br>";
       }
-      if(request.getParameter("woReplacementRandom") != null) {
+      if(wReplacement != null) {
         String[] namesArr = names.split(" ");
         Random r = new Random();
         int i = r.nextInt(namesArr.length);
+        if(namesArr.length == selected.size()) {
+          wReplacementResult = "Random with replacement result: All names have been selected.";
+        }
+        else if(selected.contains(namesArr[i])) {
+          while(selected.contains(namesArr[i]) == true){
+            i = r.nextInt(namesArr.length);
+          }
+          wReplacementResult = "Random with replacement result: " + namesArr[i];
+          selected.add(namesArr[i]);
+        }
+        else{
+          wReplacementResult = "Random with replacement result: " + namesArr[i];
+          selected.add(namesArr[i]);
+        }
+        result += wReplacementResult + "<br>";
       }
-      if(request.getParameter("sorted") != null) {
+      if(woReplacement != null) {
+        String[] namesArr = names.split(" ");
+        Random r = new Random();
+        int i = r.nextInt(namesArr.length);
+        woReplacementResult = "Random without replacement result: " + namesArr[i];
+        result += woReplacementResult + "<br>";
+      }
+      if(sorted != null) {
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr);
+        sortedResult = "Sorted order result: ";
+        for(int i = 0; i < namesArr.length; i++){
+          sortedResult += namesArr[i] + " ";
+        }
+        result += sortedResult + "<br>";
       }
-      if(request.getParameter("reversed") != null) {
+      if(reversed != null) {
         String[] namesArr = names.split(" ");
         Arrays.sort(namesArr, Collections.reverseOrder());
-      }**/
-      result = new String(random);
+        reversedResult = "Reversed sorted order result: ";
+        for(int i = 0; i < namesArr.length; i++){
+          reversedResult += namesArr[i] + " ";
+        }
+        result += reversedResult + "<br>";
+      }
+      //result = randomResult + "<br>" + wReplacementResult + "<br>" + woReplacementResult + "<br>" + sortedResult + "<br>" + reversedResult;
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       PrintHead(out);
@@ -105,6 +140,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println("   text-align: center;");
     out.println("   font-size: 15px; }");
     out.println(" .display {");
+    out.println("   line-height: 250%;");
     out.println("   margin: 35px;");
     out.println("   font-size: 30px; }");
     out.println("</style>");
@@ -123,18 +159,18 @@ public class SWE432assignment4 extends HttpServlet
     out.println("<p>Enter the list of names in the box with each name followed by a space. For example (\"John Karen Sam Allen Tom\")</p>");
     out.println("<div class=\"outer\">");
     out.print("<form id=\"form1\" name=\"nameForm\" method=\"post\"");
-    out.println("action=\"https://cs.gmu.edu:8443/offutt/servlet/formHandler\" onsubmit=\"return (checkValid())\">");
+    out.println("action=\"/assignment4\" onsubmit=\"return (checkValid())\">");
     out.println(" Names: <br>");
     out.println(" <input type=\"text\" id=\"name\" name=\"names\" value=\"" + names + "\"><br><br>");
     out.println(" <div class=\"inner\">");
     out.println(" <label for=\"random\">");
-    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"randomSelect\">");
+    out.println(" <input type=\"checkbox\" id=\"random\" name=\"randomSelect\" value=\"random\">");
     out.println(" Random select</label><br>");
     out.println(" <label for=\"wreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"replacementRandom\">");
+    out.println(" <input type=\"checkbox\" id=\"wreplacement\" name=\"replacementRandom\" value=\"replacement\">");
     out.println(" Random select with replacement</label><br>");
     out.println(" <label for=\"woreplacement\">");
-    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"woReplacementRandom\">");
+    out.println(" <input type=\"checkbox\" id=\"woreplacement\" name=\"woReplacementRandom\" value=\"woReplacement\">");
     out.println(" Random select without replacement</label><br>");
     out.println(" <label for=\"sorted\">");
     out.println(" <input type=\"checkbox\" id=\"sorted\" name=\"sorted\" value=\"sorted\">");
@@ -142,7 +178,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <label for=\"reversed\">");
     out.println(" <input type=\"checkbox\" id=\"reversed\" name=\"reversed\" value=\"reversed\">");
     out.println(" Reversed order</label><br><br>");
-    out.println(" <input type=\"text\" id=\"result\" name=\"result\" value=\"" + result + "\"><br><br>");
+    //out.println(" <input type=\"text\" id=\"result\" name=\"result\" value=\"" + result + "\"><br><br>");
     out.println(" </div><br><br>");
     out.println(" <input class=\"center\" type=\"button\" onclick=\"reset()\" value=\"Clear\">");
     out.println(" <br><br>");
@@ -150,7 +186,7 @@ public class SWE432assignment4 extends HttpServlet
     out.println(" <br><br>");
     out.println("</form>");
     out.println("</div>");
-    //out.println("<p id=\"display\" class=\"display\" name=\"display\">" + result + "</p>");
+    out.println("<p id=\"display\" class=\"display\" name=\"display\">" + result + "</p>");
     out.println("<script>");
     out.println(" function reset() {");
     out.println("   document.getElementById(\"form1\").reset();");
